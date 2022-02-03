@@ -37,13 +37,22 @@ package com.raywenderlich.android.rwcomposematerialyou
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.raywenderlich.android.rwcomposematerialyou.ui.composables.CalendarListItem
+import com.raywenderlich.android.rwcomposematerialyou.ui.composables.TopBar
 import com.raywenderlich.android.rwcomposematerialyou.ui.theme.ComposeMaterialYou
 
 class MainActivity : ComponentActivity() {
@@ -51,26 +60,47 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     setContent {
       ComposeMaterialYou {
-        Surface(
+        Scaffold(
           modifier = Modifier.fillMaxSize(),
-          color = MaterialTheme.colors.background
-        ) {
-          Greeting("Android")
-        }
+          topBar = { TopBar() },
+          content = {
+            HomeScreen()
+          },
+          floatingActionButton = {
+            ExtendedFloatingActionButton(
+              onClick = { /* ... */ },
+              icon = {
+                Icon(
+                  Icons.Filled.Add,
+                  contentDescription = "Create"
+                )
+              },
+              text = { Text("Create") }
+            )
+          }
+        )
       }
     }
   }
 }
 
 @Composable
-fun Greeting(name: String) {
-  Text(text = "Hello $name!")
+fun HomeScreen() {
+ LazyColumn( modifier = Modifier
+   .padding(10.dp)
+   .fillMaxSize()
+ ) {
+   val list = listOf("1","2", "3", "4", "5", "6")
+   items(list) {
+     CalendarListItem()
+   }
+ }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
   ComposeMaterialYou {
-    Greeting("Android")
+    HomeScreen()
   }
 }
