@@ -90,7 +90,7 @@ fun HomeScreen() {
    .padding(10.dp)
    .fillMaxSize()
  ) {
-   val list = listOf("1","2", "3", "4", "5", "6")
+   val list = listOf("1","2", "3", "4", "5", "6", "7", "8", "9")
    items(list) {
      CalendarListItem()
    }
