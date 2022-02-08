@@ -9,10 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.BackTopBar
+import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
 
 @ExperimentalMaterial3Api
 @Composable
-fun EventDetailsScreen(navController: NavController) {
+fun EventDetailsScreen(navController: NavController, eventsViewModel: EventsViewModel) {
   Scaffold(
     modifier = Modifier
       .fillMaxSize()

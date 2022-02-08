@@ -4,7 +4,7 @@ import androidx.room.Room
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.AppDataBase
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.repository.EventsRepository
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.repository.EventsRepositoryImpl
-import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.EventsViewModel
+import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

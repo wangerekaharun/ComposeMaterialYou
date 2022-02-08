@@ -8,22 +8,23 @@ import androidx.navigation.compose.composable
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.screens.EventDetailsScreen
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.screens.EventScreen
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.screens.HomeScreen
+import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
 
 @ExperimentalMaterial3Api
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(navController: NavHostController, eventsViewModel: EventsViewModel) {
   NavHost(
     navController = navController,
-    startDestination = "homeScreen"
+    startDestination = Screens.HomeScreen.route
   ) {
     composable("homeScreen") {
-      HomeScreen(navController)
+      HomeScreen(navController, eventsViewModel)
     }
     composable("eventInputScreen") {
-      EventScreen(navController)
+      EventScreen(navController, eventsViewModel)
     }
     composable("eventDetailsScreen") {
-      EventDetailsScreen(navController)
+      EventDetailsScreen(navController, eventsViewModel)
     }
   }
 }

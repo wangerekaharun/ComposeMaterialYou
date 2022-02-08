@@ -14,5 +14,5 @@ interface EventsDao {
   suspend fun createEvent(events: Events)
 
   @Query("SELECT * FROM events")
-  suspend fun getAllEvents(): Flow<List<Events>>
+  fun getAllEvents(): Flow<List<Events>>
 }

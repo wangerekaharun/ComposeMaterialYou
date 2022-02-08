@@ -47,17 +47,21 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.Events
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.CalendarListItem
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.TopBar
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.navigation.AppNavigation
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.navigation.Screens
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.theme.ComposeMaterialYou
+import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
+import org.koin.android.ext.android.inject
 
 @ExperimentalMaterial3Api
 class HomeActivityScreen : ComponentActivity() {
@@ -65,8 +69,9 @@ class HomeActivityScreen : ComponentActivity() {
     super.onCreate(savedInstanceState)
     setContent {
       val navController = rememberNavController()
+      val eventsViewModel:EventsViewModel by inject()
       ComposeMaterialYou {
-        AppNavigation(navController)
+        AppNavigation(navController, eventsViewModel)
       }
     }
   }
@@ -74,12 +79,13 @@ class HomeActivityScreen : ComponentActivity() {
 
 @ExperimentalMaterial3Api
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
   Scaffold(
     modifier = Modifier.fillMaxSize(),
     topBar = { TopBar("Compose Material You") },
     content = {
-     EventList {
+      val events = eventsViewModel.events.collectAsState(initial = emptyList())
+     EventList(events = events.value) {
        navController.navigate(Screens.EventDetails.route)
      }
     },
@@ -103,13 +109,12 @@ fun HomeScreen(navController: NavController) {
 }
 
 @Composable
-fun EventList(onEventClicked: (String) -> Unit) {
+fun EventList(events: List<Events> ,onEventClicked: (String) -> Unit) {
  LazyColumn( modifier = Modifier
    .fillMaxSize()
    .background(Color.LightGray)
  ) {
-   val list = listOf("1","2", "3", "4", "5", "6", "7", "8", "9")
-   items(list) {
+   items(events) {
      CalendarListItem(onEventClicked)
    }
  }
