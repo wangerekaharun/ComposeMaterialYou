@@ -14,7 +14,7 @@
 
     <!-- Main Activity -->
     <activity
-        android:name=".MainActivity"
+        android:name="com.raywenderlich.android.rwcomposematerialyou.ui.presentation.screens.HomeActivityScreen"
         android:exported="true"
         android:theme="@style/SplashTheme">
       <intent-filter>

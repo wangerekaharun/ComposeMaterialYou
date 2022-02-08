@@ -1,4 +1,4 @@
-package com.raywenderlich.android.rwcomposematerialyou.ui.theme
+package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

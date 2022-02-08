@@ -1,20 +1,20 @@
-package com.raywenderlich.android.rwcomposematerialyou.ui.theme
+package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
   primary = ColorPrimary,
-  primaryVariant = ColorPrimaryDark,
+  primaryContainer = ColorPrimaryDark,
   secondary = ColorAccent
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
   primary = ColorPrimary,
-  primaryVariant = ColorPrimaryDark,
+  primaryContainer = ColorPrimaryDark,
   secondary = ColorAccent
 
   /* Other default colors to override
@@ -39,9 +39,8 @@ fun ComposeMaterialYou(
   }
 
   MaterialTheme(
-    colors = colors,
+    colorScheme = colors,
     typography = Typography,
-    shapes = Shapes,
     content = content
   )
 }
