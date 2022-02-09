@@ -35,8 +35,8 @@
 package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.screens
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -47,14 +47,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.Events
+import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.UserEvent
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.CalendarListItem
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.TopBar
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.navigation.AppNavigation
@@ -64,12 +64,12 @@ import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels
 import org.koin.android.ext.android.inject
 
 @ExperimentalMaterial3Api
-class HomeActivityScreen : ComponentActivity() {
+class HomeActivityScreen : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContent {
       val navController = rememberNavController()
-      val eventsViewModel:EventsViewModel by inject()
+      val eventsViewModel: EventsViewModel by inject()
       ComposeMaterialYou {
         AppNavigation(navController, eventsViewModel)
       }
@@ -80,21 +80,25 @@ class HomeActivityScreen : ComponentActivity() {
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
+  eventsViewModel.getAllEvents()
+
   Scaffold(
     modifier = Modifier.fillMaxSize(),
     topBar = { TopBar("Compose Material You") },
     content = {
-      val events = eventsViewModel.events.collectAsState(initial = emptyList())
-     EventList(events = events.value) {
-       navController.navigate(Screens.EventDetails.route)
-     }
+      val events by eventsViewModel.userEvent.observeAsState()
+      events?.let { userEvents ->
+        EventList(events = userEvents) {
+          navController.navigate(Screens.EventDetails.route)
+        }
+      }
     },
     floatingActionButton = {
       ExtendedFloatingActionButton(
         modifier = Modifier
           .padding(16.dp),
         onClick = {
-                  navController.navigate(Screens.EventInputScreen.route)
+          navController.navigate(Screens.EventInputScreen.route)
         },
         icon = {
           Icon(
@@ -109,22 +113,14 @@ fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
 }
 
 @Composable
-fun EventList(events: List<Events> ,onEventClicked: (String) -> Unit) {
- LazyColumn( modifier = Modifier
-   .fillMaxSize()
-   .background(Color.LightGray)
- ) {
-   items(events) {
-     CalendarListItem(onEventClicked)
-   }
- }
-}
-
-@ExperimentalMaterial3Api
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-  ComposeMaterialYou {
-
+fun EventList(events: List<UserEvent>, onEventClicked: (String) -> Unit) {
+  LazyColumn(
+    modifier = Modifier
+      .fillMaxSize()
+      .background(Color.White)
+  ) {
+    items(events) { userEvent ->
+      CalendarListItem(userEvent, onEventClicked)
+    }
   }
 }

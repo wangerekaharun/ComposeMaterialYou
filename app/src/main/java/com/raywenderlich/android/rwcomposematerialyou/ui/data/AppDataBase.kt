@@ -3,10 +3,10 @@ package com.raywenderlich.android.rwcomposematerialyou.ui.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.dao.EventsDao
-import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.Events
+import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.UserEvent
 
 @Database(
-  entities = [Events::class],
+  entities = [UserEvent::class],
   version = 1,
   exportSchema = false
 )

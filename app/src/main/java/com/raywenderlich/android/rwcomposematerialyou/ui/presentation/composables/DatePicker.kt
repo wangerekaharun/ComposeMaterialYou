@@ -1,8 +1,10 @@
 package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables
 
-import androidx.compose.foundation.border
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Icon
@@ -11,24 +13,35 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension.Companion.fillToConstraints
+import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
+import com.raywenderlich.android.rwcomposematerialyou.ui.utils.showDatePicker
 
 @Composable
-fun DatePicker() {
-  //val activity = LocalContext.current as AppCompatActivity
-
+fun DatePicker(
+  datePicked: String?,
+  updatedDate: (date: String?) -> Unit,
+  activity: AppCompatActivity,
+  eventsViewModel: EventsViewModel
+) {
   Box(
     modifier = Modifier
       .fillMaxWidth()
       .wrapContentSize(Alignment.TopStart)
-      .padding(top = 10.dp)
-      .border(0.5.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
-      .clickable{
-
+      .padding(10.dp)
+      .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+      .clickable {
+        showDatePicker(
+          activity,
+          updatedDate
+        )
       }
   ) {
+
+    eventsViewModel.date = datePicked.toString()
 
     ConstraintLayout(
       modifier = Modifier
@@ -36,14 +49,16 @@ fun DatePicker() {
         .padding(16.dp)
     ) {
 
-      val (lable, iconView) = createRefs()
+      val (label, iconView) = createRefs()
+
+      val showLabel = if (datePicked.isNullOrEmpty()) "Choose a Date" else datePicked
 
       Text(
-        text= "Date Picker",
+        text = showLabel,
         color = MaterialTheme.colorScheme.onSurface,
         modifier = Modifier
           .fillMaxWidth()
-          .constrainAs(lable) {
+          .constrainAs(label) {
             top.linkTo(parent.top)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)

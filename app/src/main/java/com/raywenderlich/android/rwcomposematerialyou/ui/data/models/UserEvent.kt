@@ -4,11 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "events")
-data class Events(
+data class UserEvent(
   @PrimaryKey(autoGenerate = true)
   val id: Int = 0,
-  val name: String,
-  val description: String,
-  val color: String,
-  val date: String
+  val name: String = "",
+  val description: String = "",
+  val eventColor: String = "",
+  val date: String = ""
 )
