@@ -37,4 +37,13 @@ class EventsViewModel(private val eventsRepository: EventsRepository) : ViewMode
       }
     }
   }
+
+  fun validate(): Boolean {
+    var isValid = true
+    if (userSelectedColor.isEmpty()) isValid = false
+    if (eventName.isEmpty()) isValid = false
+    if (eventDescription.isEmpty()) isValid = false
+    if (date.isEmpty()) isValid = false
+    return isValid
+  }
 }

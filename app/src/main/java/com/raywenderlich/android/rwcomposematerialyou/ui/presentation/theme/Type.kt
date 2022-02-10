@@ -9,7 +9,9 @@ import androidx.compose.ui.unit.sp
 import com.raywenderlich.android.rwcomposematerialyou.R
 
 val SourceCodePro = FontFamily(
-  Font(R.font.sourcecodeproregular)
+  Font(R.font.sourcecodeproregular),
+  Font(R.font.sourcecodepromedium, FontWeight.Medium),
+  Font(R.font.sourcecodeprobold, FontWeight.SemiBold)
 )
 
 val Typography = Typography(

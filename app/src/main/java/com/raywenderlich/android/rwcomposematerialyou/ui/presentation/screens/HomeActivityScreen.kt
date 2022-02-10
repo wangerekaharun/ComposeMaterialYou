@@ -51,12 +51,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.UserEvent
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.CalendarListItem
+import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.EmptyStateScreen
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.TopBar
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.navigation.AppNavigation
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.navigation.Screens
@@ -89,8 +89,12 @@ fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
     topBar = { TopBar("Compose Material You") },
     content = {
       val events by eventsViewModel.userEvent.observeAsState()
-      events?.let { userEvents ->
-        EventList(events = userEvents)
+      if (events.isNullOrEmpty()) {
+        EmptyStateScreen()
+      } else {
+        events?.let { userEvents ->
+          EventList(events = userEvents)
+        }
       }
     },
     floatingActionButton = {
@@ -118,7 +122,7 @@ fun EventList(events: List<UserEvent>) {
   LazyColumn(
     modifier = Modifier
       .fillMaxSize()
-      .background(Color.White)
+      .background(MaterialTheme.colorScheme.onPrimary)
   ) {
     items(events) { userEvent ->
       CalendarListItem(userEvent)

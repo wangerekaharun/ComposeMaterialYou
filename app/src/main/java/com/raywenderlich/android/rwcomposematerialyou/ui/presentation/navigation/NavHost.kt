@@ -3,6 +3,8 @@ package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.navigatio
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandIn
+import androidx.compose.animation.shrinkOut
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -20,7 +22,9 @@ import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels
 fun AppNavigation(navController: NavHostController, eventsViewModel: EventsViewModel) {
   AnimatedNavHost(
     navController = navController,
-    startDestination = Screens.HomeScreen.route
+    startDestination = Screens.HomeScreen.route,
+    enterTransition = { expandIn(animationSpec = tween(800)) },
+    exitTransition = { shrinkOut(animationSpec = tween(800)) }
   ) {
     composable(Screens.HomeScreen.route,
       enterTransition = {
