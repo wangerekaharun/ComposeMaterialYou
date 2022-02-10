@@ -1,6 +1,5 @@
 package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,14 +16,11 @@ import com.raywenderlich.android.rwcomposematerialyou.ui.utils.stringToColor
 
 @ExperimentalMaterial3Api
 @Composable
-fun CalendarListItem(userEvent: UserEvent, onEventClicked: (String) -> Unit) {
+fun CalendarListItem(userEvent: UserEvent) {
   ElevatedCard(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(6.dp)
-      .clickable {
-        onEventClicked.invoke("")
-      },
+      .padding(6.dp),
     containerColor = userEvent.eventColor.stringToColor(),
     shape = RoundedCornerShape(15.dp),
   ) {
