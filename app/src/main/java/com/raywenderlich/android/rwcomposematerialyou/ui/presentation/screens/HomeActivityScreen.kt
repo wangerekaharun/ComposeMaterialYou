@@ -49,6 +49,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -63,6 +64,7 @@ import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.theme.Comp
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
 import org.koin.android.ext.android.inject
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterial3Api
 class HomeActivityScreen : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,6 +113,7 @@ fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
   )
 }
 
+@ExperimentalMaterial3Api
 @Composable
 fun EventList(events: List<UserEvent>, onEventClicked: (String) -> Unit) {
   LazyColumn(
