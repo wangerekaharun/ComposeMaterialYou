@@ -81,7 +81,6 @@ class HomeActivityScreen : AppCompatActivity() {
 @Composable
 fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
   eventsViewModel.getAllEvents()
-
   Scaffold(
     modifier = Modifier.fillMaxSize(),
     topBar = { TopBar("Compose Material You") },

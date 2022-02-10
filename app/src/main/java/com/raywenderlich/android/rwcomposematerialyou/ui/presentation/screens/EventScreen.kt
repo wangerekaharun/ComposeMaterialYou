@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -15,6 +16,7 @@ import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composable
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
 
 
+@ExperimentalComposeUiApi
 @ExperimentalMaterial3Api
 @Composable
 fun EventScreen(navController: NavController, eventsViewModel: EventsViewModel) {
@@ -28,6 +30,7 @@ fun EventScreen(navController: NavController, eventsViewModel: EventsViewModel) 
   )
 }
 
+@ExperimentalComposeUiApi
 @Composable
 fun EventInputs(eventsViewModel: EventsViewModel, navController: NavController) {
   val activity = LocalContext.current as AppCompatActivity
