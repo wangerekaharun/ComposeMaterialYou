@@ -62,10 +62,7 @@ fun CalendarListItem(userEvent: UserEvent) {
   ElevatedCard(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(6.dp)
-      .clickable {
-        showDescription = true
-      },
+      .padding(6.dp),
     containerColor = userEvent.eventColor.stringToColor(),
     shape = RoundedCornerShape(15.dp),
   ) {
@@ -98,7 +95,7 @@ fun CalendarListItem(userEvent: UserEvent) {
           modifier = Modifier
             .size(30.dp, 30.dp)
             .clickable {
-              showDescription = false
+              showDescription = !showDescription
             }
             .constrainAs(icon) {
               top.linkTo(parent.top)
