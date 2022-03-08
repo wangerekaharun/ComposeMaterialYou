@@ -47,15 +47,20 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalTextInputService
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
+import kotlinx.coroutines.delay
 
 @ExperimentalComposeUiApi
 @Composable
 fun EventNameInputText(label: String, eventsViewModel: EventsViewModel) {
   var userInput by remember { mutableStateOf("") }
-  val (nameInput) = FocusRequester.createRefs()
+  val focusRequester = remember { FocusRequester() }
+  val inputService = LocalTextInputService.current
+  val focus = remember { mutableStateOf(false) }
   Column(
     modifier = Modifier
       .fillMaxWidth()
@@ -74,11 +79,20 @@ fun EventNameInputText(label: String, eventsViewModel: EventsViewModel) {
     ) {
       BasicTextField(
         modifier = Modifier
+          .fillMaxWidth()
           .padding(16.dp)
-          .focusRequester(nameInput),
+          .focusRequester(focusRequester)
+          .onFocusChanged {
+            if (focus.value != it.isFocused) {
+              focus.value = it.isFocused
+              if (!it.isFocused) {
+                inputService?.hideSoftwareKeyboard()
+              }
+            }
+          },
         keyboardActions = KeyboardActions(
           onNext = {
-            nameInput.requestFocus()
+            focusRequester.requestFocus()
           }
         ),
 
@@ -88,6 +102,12 @@ fun EventNameInputText(label: String, eventsViewModel: EventsViewModel) {
         },
         value = userInput,
       )
+
+      LaunchedEffect("") {
+        delay(300)
+        inputService?.showSoftwareKeyboard()
+        focusRequester.requestFocus()
+      }
     }
   }
 }

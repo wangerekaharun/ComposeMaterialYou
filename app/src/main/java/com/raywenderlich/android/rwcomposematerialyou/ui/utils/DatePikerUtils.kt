@@ -40,6 +40,7 @@ import java.util.*
 
 fun showDatePicker(
   activity: AppCompatActivity,
+  previouslySelectedDate: String = "",
   updatedDate: (String) -> Unit
 ) {
   val c = Calendar.getInstance()
@@ -51,5 +52,11 @@ fun showDatePicker(
       updatedDate("$day-${month + 1}-$year")
     }, calendarYear, calendarMonth, calendarDay
   )
+  if (previouslySelectedDate.isNotEmpty()) {
+    val prevYear = previouslySelectedDate.split("-")[2].toInt()
+    val prevMonth = previouslySelectedDate.split("-")[1].toInt()
+    val prevDay = previouslySelectedDate.split("-")[0].toInt()
+    datePickerDialog.updateDate(prevYear, prevMonth - 1, prevDay)
+  }
   datePickerDialog.show()
 }

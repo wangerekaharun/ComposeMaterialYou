@@ -35,11 +35,13 @@ package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composabl
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -94,7 +96,12 @@ fun CalendarListItem(userEvent: UserEvent) {
           contentDescription = null,
           modifier = Modifier
             .size(30.dp, 30.dp)
-            .clickable {
+            .clickable(
+              indication = rememberRipple(bounded = true),
+              interactionSource = remember {
+                MutableInteractionSource()
+              }
+            ) {
               showDescription = !showDescription
             }
             .constrainAs(icon) {

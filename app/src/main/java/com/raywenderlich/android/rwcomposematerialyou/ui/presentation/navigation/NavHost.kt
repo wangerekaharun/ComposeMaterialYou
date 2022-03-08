@@ -61,88 +61,64 @@ fun AppNavigation(navController: NavHostController, eventsViewModel: EventsViewM
   ) {
     composable(Screens.HomeScreen.route,
       enterTransition = {
-        when (initialState.destination.route) {
-          Screens.EventInputScreen.route ->
-            slideIntoContainer(
-              AnimatedContentScope.SlideDirection.Left,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (initialState.destination.route == Screens.EventInputScreen.route) slideIntoContainer(
+          AnimatedContentScope.SlideDirection.Left,
+          animationSpec = tween(600)
+        )
+        else null
       },
       exitTransition = {
-        when (targetState.destination.route) {
-          Screens.EventInputScreen.route ->
-            slideOutOfContainer(
-              AnimatedContentScope.SlideDirection.Left,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (targetState.destination.route == Screens.EventInputScreen.route) slideOutOfContainer(
+          AnimatedContentScope.SlideDirection.Left,
+          animationSpec = tween(600)
+        )
+        else null
       },
       popEnterTransition = {
-        when (initialState.destination.route) {
-          Screens.EventInputScreen.route ->
-            slideIntoContainer(
-              AnimatedContentScope.SlideDirection.Right,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (initialState.destination.route == Screens.EventInputScreen.route) slideIntoContainer(
+          AnimatedContentScope.SlideDirection.Right,
+          animationSpec = tween(600)
+        )
+        else null
       },
       popExitTransition = {
-        when (targetState.destination.route) {
-          Screens.EventInputScreen.route ->
-            slideOutOfContainer(
-              AnimatedContentScope.SlideDirection.Right,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (targetState.destination.route == Screens.EventInputScreen.route) slideOutOfContainer(
+          AnimatedContentScope.SlideDirection.Right,
+          animationSpec = tween(600)
+        )
+        else null
       }
     ) {
       HomeScreen(navController, eventsViewModel)
     }
     composable(Screens.EventInputScreen.route,
       enterTransition = {
-        when (initialState.destination.route) {
-          Screens.HomeScreen.route ->
-            slideIntoContainer(
-              AnimatedContentScope.SlideDirection.Left,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (initialState.destination.route == Screens.HomeScreen.route) slideIntoContainer(
+          AnimatedContentScope.SlideDirection.Left,
+          animationSpec = tween(600)
+        )
+        else null
       },
       exitTransition = {
-        when (targetState.destination.route) {
-          Screens.HomeScreen.route ->
-            slideOutOfContainer(
-              AnimatedContentScope.SlideDirection.Left,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (targetState.destination.route == Screens.HomeScreen.route) slideOutOfContainer(
+          AnimatedContentScope.SlideDirection.Left,
+          animationSpec = tween(600)
+        )
+        else null
       },
       popEnterTransition = {
-        when (initialState.destination.route) {
-          Screens.HomeScreen.route ->
-            slideIntoContainer(
-              AnimatedContentScope.SlideDirection.Right,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (initialState.destination.route == Screens.HomeScreen.route) slideIntoContainer(
+          AnimatedContentScope.SlideDirection.Right,
+          animationSpec = tween(600)
+        )
+        else null
       },
       popExitTransition = {
-        when (targetState.destination.route) {
-          Screens.HomeScreen.route ->
-            slideOutOfContainer(
-              AnimatedContentScope.SlideDirection.Right,
-              animationSpec = tween(600)
-            )
-          else -> null
-        }
+        if (targetState.destination.route == Screens.HomeScreen.route) slideOutOfContainer(
+          AnimatedContentScope.SlideDirection.Right,
+          animationSpec = tween(600)
+        )
+        else null
       }
     ) {
       EventScreen(navController, eventsViewModel)

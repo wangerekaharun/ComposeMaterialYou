@@ -68,6 +68,7 @@ var userInput by remember { mutableStateOf("") }
     ) {
       BasicTextField(
         modifier = Modifier
+          .fillMaxWidth()
           .padding(16.dp),
 
         onValueChange = {

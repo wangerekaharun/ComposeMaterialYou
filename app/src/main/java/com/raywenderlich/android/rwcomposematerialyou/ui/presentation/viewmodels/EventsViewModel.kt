@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 class EventsViewModel(private val eventsRepository: EventsRepository) : ViewModel() {
   private val _events = MutableLiveData<List<UserEvent>>()
   val userEvent: MutableLiveData<List<UserEvent>> get() = _events
-  var userSelectedColor = ""
+  var userSelectedColor = "Default Color"
   var eventName = ""
   var eventDescription = ""
   var date = ""
@@ -71,12 +71,7 @@ class EventsViewModel(private val eventsRepository: EventsRepository) : ViewMode
     }
   }
 
-  fun validate(): Boolean {
-    var isValid = true
-    if (userSelectedColor.isEmpty()) isValid = false
-    if (eventName.isEmpty()) isValid = false
-    if (eventDescription.isEmpty()) isValid = false
-    if (date.isEmpty()) isValid = false
-    return isValid
-  }
+  fun validate(): Boolean =
+    eventName.isNotEmpty() && eventDescription.isNotEmpty() && date.isNotEmpty()
+
 }

@@ -35,10 +35,12 @@ package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composabl
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -47,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.EventColors
@@ -62,6 +65,7 @@ fun ColorPicker(eventsViewModel: EventsViewModel) {
   }
 
   if (showDialog) {
+    LocalFocusManager.current.clearFocus()
     AlertDialog(
       onDismissRequest = { },
       title = { Text(text = "Select Color") },
@@ -72,7 +76,13 @@ fun ColorPicker(eventsViewModel: EventsViewModel) {
               Row(
                 modifier = Modifier
                   .fillMaxWidth()
-                  .clickable {
+                  .padding(top = 8.dp, bottom = 8.dp)
+                  .clickable(
+                    indication = rememberRipple(bounded = true),
+                    interactionSource = remember {
+                      MutableInteractionSource()
+                    }
+                  ) {
                     showDialog = false
                     colorSelected = eventColor
                     eventsViewModel.userSelectedColor = colorSelected.color.colorToString()
@@ -110,7 +120,12 @@ fun ColorPicker(eventsViewModel: EventsViewModel) {
       .fillMaxWidth()
       .padding(10.dp)
       .background(color = White, shape = RoundedCornerShape(10.dp))
-      .clickable {
+      .clickable(
+        indication = rememberRipple(bounded = true),
+        interactionSource = remember {
+          MutableInteractionSource()
+        }
+      ) {
         showDialog = true
       }
   ) {
