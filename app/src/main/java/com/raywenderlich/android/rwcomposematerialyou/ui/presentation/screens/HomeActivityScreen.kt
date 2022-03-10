@@ -84,7 +84,8 @@ class HomeActivityScreen : AppCompatActivity() {
 fun HomeScreen(navController: NavController, eventsViewModel: EventsViewModel) {
   eventsViewModel.getAllEvents()
   Scaffold(
-    modifier = Modifier.fillMaxSize(),
+    modifier = Modifier
+      .fillMaxSize(),
     topBar = { TopBar("Compose Material You") },
     content = {
       val events by eventsViewModel.userEvent.observeAsState()
