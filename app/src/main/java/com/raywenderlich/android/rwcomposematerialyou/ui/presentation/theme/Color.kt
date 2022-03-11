@@ -45,3 +45,5 @@ val ColorDefaultEvent = Color(0xFF6FCF97)
 val ColorPersonal = Color(0xFFFFA93B)
 val ColorWork = Color(0xFF006AF6)
 val ColorOther = Color(0xFFEB5757)
+
+// TODO ADD Material Theme Builder Colors

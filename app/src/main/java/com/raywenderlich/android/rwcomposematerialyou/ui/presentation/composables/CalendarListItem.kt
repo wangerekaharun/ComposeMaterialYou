@@ -33,7 +33,6 @@
  */
 package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -116,18 +115,9 @@ fun CalendarListItem(userEvent: UserEvent) {
         modifier = Modifier
           .padding(top = 10.dp)
       )
-      if (showDescription) {
-        AnimatedVisibility(visible = showDescription) {
-          Text(
-            text = userEvent.description,
-            color = Color.White
-          )
-          Spacer(
-            modifier = Modifier
-              .padding(top = 10.dp)
-          )
-        }
-      }
+
+      // TODO Add Animated Visibility Animation
+
       Text(
         text = userEvent.date,
         color = Color.White
