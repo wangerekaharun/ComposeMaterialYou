@@ -52,7 +52,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.rememberNavController
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.UserEvent
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.CalendarListItem
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables.EmptyStateScreen
@@ -70,7 +70,7 @@ class HomeActivityScreen : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContent {
-      val navController = rememberAnimatedNavController()
+      val navController = rememberNavController()
       val eventsViewModel: EventsViewModel by inject()
       ComposeMaterialYou {
         AppNavigation(navController, eventsViewModel)
