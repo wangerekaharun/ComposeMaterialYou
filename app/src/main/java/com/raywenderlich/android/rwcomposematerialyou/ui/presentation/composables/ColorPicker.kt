@@ -37,11 +37,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -49,13 +46,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.raywenderlich.android.rwcomposematerialyou.ui.data.models.EventColors
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
-import com.raywenderlich.android.rwcomposematerialyou.ui.utils.colorToString
-import com.raywenderlich.android.rwcomposematerialyou.ui.utils.eventColors
 
 @Composable
 fun ColorPicker(eventsViewModel: EventsViewModel) {
@@ -64,56 +57,7 @@ fun ColorPicker(eventsViewModel: EventsViewModel) {
     mutableStateOf(EventColors(Green, "Default Color"))
   }
 
-  if (showDialog) {
-    LocalFocusManager.current.clearFocus()
-    AlertDialog(
-      onDismissRequest = { },
-      title = { Text(text = "Select Color") },
-      text = {
-        LazyColumn(
-          content = {
-            items(eventColors) { eventColor ->
-              Row(
-                modifier = Modifier
-                  .fillMaxWidth()
-                  .padding(top = 8.dp, bottom = 8.dp)
-                  .clickable(
-                    indication = rememberRipple(bounded = true),
-                    interactionSource = remember {
-                      MutableInteractionSource()
-                    }
-                  ) {
-                    showDialog = false
-                    colorSelected = eventColor
-                    eventsViewModel.userSelectedColor = colorSelected.color.colorToString()
-                  }
-              ) {
-                Box(
-                  modifier = Modifier
-                    .size(25.dp)
-                    .padding(5.dp)
-                    .align(alignment = Alignment.CenterVertically)
-                    .clip(shape = RoundedCornerShape(15.dp))
-                    .background(eventColor.color)
-                )
-
-                Text(
-                  text = eventColor.name,
-                  modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(5.dp)
-                    .align(alignment = Alignment.CenterVertically),
-                  fontSize = 12.sp
-                )
-              }
-            }
-          }
-        )
-      },
-      confirmButton = { },
-      dismissButton = { },
-    )
-  }
+  // TODO Add Alert Dialog with Fade Animations
 
   Column(
     modifier = Modifier
