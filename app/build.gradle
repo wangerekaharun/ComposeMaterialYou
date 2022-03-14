@@ -62,9 +62,7 @@ dependencies {
   implementation "androidx.navigation:navigation-compose:2.5.0-alpha03"
   implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 
-  // Accompanist
-  implementation "com.google.accompanist:accompanist-navigation-animation:0.24.1-alpha"
-  implementation("com.google.accompanist:accompanist-insets:0.24.3-alpha")
+  // TODO Add Accompanist Dependencies
 
   // Room
   implementation("androidx.room:room-runtime:2.4.2")
