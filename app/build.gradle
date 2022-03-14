@@ -6,7 +6,7 @@ android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.rwcomposematerialyou"
+    applicationId "com.app.composematerialyou"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1

@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     maven { url "https://jitpack.io" }
   }
 }
-rootProject.name='Rwcomposematerialyou'
+rootProject.name='ComposeMaterialYou'
 include ':app'
