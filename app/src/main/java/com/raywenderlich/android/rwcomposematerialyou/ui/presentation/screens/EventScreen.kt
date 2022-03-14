@@ -34,6 +34,7 @@
 package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.screens
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,6 +50,7 @@ import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composable
 import com.raywenderlich.android.rwcomposematerialyou.ui.presentation.viewmodels.EventsViewModel
 
 
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @ExperimentalMaterial3Api
 @Composable
@@ -63,6 +65,7 @@ fun EventScreen(navController: NavController, eventsViewModel: EventsViewModel) 
   )
 }
 
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
 fun EventInputs(eventsViewModel: EventsViewModel, navController: NavController) {

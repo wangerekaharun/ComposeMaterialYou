@@ -33,6 +33,9 @@
  */
 package com.raywenderlich.android.rwcomposematerialyou.ui.presentation.composables
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -64,7 +67,11 @@ fun ColorPicker(eventsViewModel: EventsViewModel) {
     mutableStateOf(EventColors(Green, "Default Color"))
   }
 
-  if (showDialog) {
+  AnimatedVisibility(
+    visible = showDialog,
+    enter = fadeIn(),
+    exit = fadeOut()
+  ) {
     LocalFocusManager.current.clearFocus()
     AlertDialog(
       onDismissRequest = { },
