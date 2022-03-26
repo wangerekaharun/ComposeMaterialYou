@@ -5,7 +5,7 @@ buildscript {
     compileSdkVersion = 31
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 23
-    compose_version = '1.1.1'
+    compose_version = '1.2.0-alpha06'
   }
 }
   plugins {
