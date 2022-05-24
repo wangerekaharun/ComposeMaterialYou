@@ -2,6 +2,8 @@
 
 Sample Android app
 
+Read the aticle: [Material You in Jetpack Compose](https://www.raywenderlich.com/32081822-material-you-in-jetpack-compose)
+
 ## License
 
 ```
